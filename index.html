@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ВКонтакте</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    
+    header {
+      background-color: #4c75a3;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .search-form {
+      display: flex;
+      align-items: center;
+      background-color: white;
+      border-radius: 20px;
+      padding: 5px 15px;
+    }
+
+    .search-form input {
+      border: none;
+      outline: none;
+      padding: 5px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    .search-form button {
+      background-color: #0078e7;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .search-form button:hover {
+      background-color: #0064c2;
+    }
+
+    .main-container {
+      display: flex;
+      padding: 20px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #fff;
+      padding: 20px;
+      margin-right: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      font-size: 16px;
+      color: #4c75a3;
+      text-decoration: none;
+      margin: 10px 0;
+    }
+
+    .sidebar a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      flex: 1;
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+
+    .profile-header {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .profile-header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+
+    .profile-header div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .profile-header h2 {
+      font-size: 24px;
+      margin-bottom: 5px;
+    }
+
+    .profile-header .edit-icon {
+      cursor: pointer;
+      font-size: 18px;
+      color: #0078e7;
+      margin-top: 10px;
+    }
+
+    .profile-header .edit-icon:hover {
+      text-decoration: underline;
+    }
+
+    .profile-info {
+      margin-top: 20px;
+    }
+
+    .profile-info h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .profile-info p {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .media-block {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .media-block div {
+      flex: 1;
+      background-color: #f9f9f9;
+      padding: 20px;
+      text-align: center;
+      margin-right: 10px;
+      border-radius: 10px;
+    }
+
+    .media-block div:last-child {
+      margin-right: 0;
+    }
+
+    .media-block div h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .friends-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .friend-card {
+      width: 100px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .friend-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 5px;
+    }
+
+    footer {
+      background-color: #4c75a3;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+
+    
+    .friends-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    
+    .profile-info hr {
+      margin-top: 20px;
+      border: 0;
+      border-top: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <header>
+    <div class="logo">ВКонтакте</div>
+    <nav>
+      <a href="#">Новости</a>
+      <a href="#">Сообщения</a>
+      <a href="#" id="friendsButton">Друзья</a>
+      <a href="#">Группы</a>
+    </nav>
+    <form class="search-form">
+      <input type="text" placeholder="Поиск...">
+      <button type="submit">🔍</button>
+    </form>
+  </header>
+
+  <div class="main-container">
+   
+    <div class="sidebar">
+      <a href="#">Мой профиль</a>
+      <a href="#">Новости</a>
+      <a href="#">Сообщения</a>
+      <a href="#">Группы</a>
+      <a href="#" id="friendsSidebar">Мои друзья</a>
+    </div>
+
+    
+    <div class="content">
+    
+        <div class="profile-header">
+            <img src="https://icdn.lenta.ru/images/2019/09/07/18/20190907182940553/square_320_4a4daec12981891d5b0270fe7a4de168.jpg" alt="Аватар" class="avatar">
+            <div>
+              <h2>Нурым Тлеуханов</h2>
+              <p>Разработчик</p>
+              <div class="edit-icon">Редактировать</div>
+            </div>
+          </div>
+          
+          <style>
+            .profile-header img.avatar {
+              width: 150px; 
+              height: 150px; 
+              object-fit: cover; 
+              border-radius: 50%; 
+            }
+          </style>
+
+      
+      <div class="profile-info">
+        <h3>День рождения</h3>
+        <p>1 Октября</p>
+        <h3>Город</h3>
+        <p>Алматы</p>
+        <h3>Семейное положение</h3>
+        <p>Не женат</p>
+        <h3>Место работы</h3>
+        <p>Bitlab</p>
+        
+        
+        <hr>
+      </div>
+
+      
+      <div class="media-block">
+        <div>
+          <h3>Друзья</h3>
+          <p>150</p>
+        </div>
+        <div>
+          <h3>Видео</h3>
+          <p>50</p>
+        </div>
+        <div>
+          <h3>Аудиозаписи</h3>
+          <p>120</p>
+        </div>
+        <div>
+          <h3>Фотографии</h3>
+          <p>200</p>
+        </div>
+      </div>
+
+      
+      <div class="friends-container" id="friendsContainer">
+        <h3>Мои друзья</h3>
+        <div class="friends-list">
+          <div class="friend-card">
+            <img src="https://via.placeholder.com/80" alt="Друг 1">
+            <p>Друг 1</p>
+          </div>
+          <div class="friend-card">
+            <img src="https://via.placeholder.com/80" alt="Друг 2">
+            <p>Друг 2</p>
+          </div>
+          <div class="friend-card">
+            <img src="https://via.placeholder.com/80" alt="Друг 3">
+            <p>Друг 3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2024 ВКонтакте</p>
+  </footer
